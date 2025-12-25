@@ -1,0 +1,1 @@
+DESTROY{bless[]}die$=,bless[]
