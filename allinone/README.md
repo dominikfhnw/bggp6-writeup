@@ -126,12 +126,16 @@ The ELF file uses an `e_machine` value of 6, which stands for "Intel MCU" accord
 Many tools do not recognize this alternative value, and will fail to either load such a binary at all, or will fail to correctly disassemble such binaries. Radare2 was one of these tools, so I submitted two pull requests (for r2 itself, and for the repo with the test binaries) to fix this:
 * https://github.com/radareorg/radare2/pull/24730
 * https://github.com/radareorg/radare2-testbins/pull/112
+
 Both were merged before the end of BGGP6.
 
 Expected final score is (4096-223)+(5*256)+1024+256=6433.
 
 
 
+References
+----------
 
 [1] https://elixir.bootlin.com/linux/v6.18-rc2/source/include/uapi/linux/elf-em.h#L12
+
 [2] https://elixir.bootlin.com/linux/v6.18-rc2/source/arch/x86/include/asm/elf.h#L85
