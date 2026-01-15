@@ -28,6 +28,8 @@ $ dosbox e.com
 6 [in separate dosbox window]
 ```
 
+Do a `rm 6` before you run the program a second time, as errors during creat() are not handled gracefully
+
 Downloader/BGGP5
 ----------------
 This was the first functionality I implemented: call curl with an execve() syscall. As this is the last part of the final program, no space is wasted for doing any exit() syscalls, as execve() itself will end the program.
