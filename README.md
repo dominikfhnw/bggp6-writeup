@@ -1,6 +1,13 @@
 BGGP6 writeup
 =============
 
+This is my writeup for BGGP #6 (https://binary.golf/), an annual small file competition.
+
+Palindromic Polyglot Replicator Crasher Downloader
+--------------------------------------------------
+
+See [here](allinone/README.md) for the writeup for this entry
+
 ELF/sh polyglot
 ---------------
 
@@ -24,7 +31,7 @@ ELF print6
 ----------
 
 It is well-known that the lower limit for a 32bit i386 ELF file is 45 byte (see [1] above). The goal for this entry was - how much BGGP can I squeeze into 45 bytes?
-Just doing an exit(6) would be a trivial change of Brian Raiter's original program, but that's not very original.
+Just doing an exit(6) would be a trivial change of Brian Raiter's original program, but that's not very ...original.
 
 Every other challenge is too big - the smallest I got (without too much cheating) is 71 bytes for BGGP5 (I hope I can find enough time to do a writeup for that one too).
 
@@ -60,7 +67,7 @@ Program Headers:
   Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
   LOAD           0x000a36 0x6804ba36 0x00030002 0x6804b019 0x6804b019 R   0x4b008b9
 ```
-You can clearly see offset being 0xa36, and VirtAddr being page_offset+offset.
+You can see offset being 0xa36, and VirtAddr being page_offset+offset.
 
 
 The program itself:
