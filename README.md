@@ -6,7 +6,7 @@ This is my writeup for BGGP #6 (https://binary.golf/), an annual small file comp
 Palindromic Polyglot Replicator Crasher Downloader
 --------------------------------------------------
 
-See [here](allinone/README.md) for the writeup for this entry
+See [here](tree/main/allinone) for the writeup for this entry
 
 ELF/sh polyglot
 ---------------
