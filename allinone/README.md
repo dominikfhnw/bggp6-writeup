@@ -61,7 +61,7 @@ I finally settled on DOS com file, as they have no predefined header and are thu
 0000004B  C3                ret
 ...
 ```
-The ELF header decodes to a jump to 0x47 in 16-bit assembly (the 'greater' condition is always true when the executable starts). To position the relevant code at offset 0x47 I used a nasm macro, see [the source](es.asm#85) for further details.
+The ELF header decodes to a jump to 0x47 in 16-bit assembly (the 'greater' condition is always true when the executable starts). To position the relevant code at offset 0x47 I used a nasm macro, see [the source](es.asm#L85) for further details.
 
 
 Palindrome/BGGP1
@@ -110,7 +110,7 @@ Buildscript
 
 A script was used to build and test the binary during development. All of the 5 BGGP requirements were automatically tested (with the exception of the DOS COM polyglot, as dosbox does not allow redirecting to STDOUT).
 
-The palindrome was also generated and tested automatically with a perl command ([source](es.asm#25)), and an expected score was calculated.
+The palindrome was also generated and tested automatically with a perl command ([source](es.asm#L25)), and an expected score was calculated.
 
 The script is not separate from the assembler source code; the source code itself is a shell/nasm palindrome. This was achieved by having a conditional macro at the top of the file:
 ```
