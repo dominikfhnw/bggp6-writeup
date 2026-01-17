@@ -36,9 +36,16 @@ One trick used is to start the program at offset 0x19, where it collides with th
 ```
 
 To run: make it executable, and then simply type
+
 `./argv /bin/curl -L https://binary.golf/6/6`
+
 Or for nostalgia reasons:
+
 `./argv /bin/curl -L https://binary.golf/5/5`
+
+It is also a valid BGGP4 entry, just type
+
+`./argv /bin/cp -v argv 6`
 
 Do you think that's cheating? I think so too, but running with CLI arguments was explicitly allowed for BGGP5.
 
