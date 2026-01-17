@@ -136,18 +136,11 @@ It's basically and old deb file with the `control` file just containing the numb
 
 `exec.deb`, at 125 bytes, is the smallest deb that actually executes code when you try to install it:
 ```
-b# dpkg -i smallest.deb
-dpkg: error processing archive smallest.deb (--install):
- parsing file '/var/lib/dpkg/tmp.ci/control' near line 0:
- end of file after field name '6'
-Errors were encountered while processing:
- smallest.deb
-root@DESKTOP-NT8EGHQ:/home/balou/iv/bggp6/writeup/deb# dpkg -i exec.deb
+# dpkg -i exec.deb
 dpkg: warning: parsing file '/var/lib/dpkg/tmp.ci/control' near line 4 package '6':
  missing 'Description' field
 dpkg: warning: parsing file '/var/lib/dpkg/tmp.ci/control' near line 4 package '6':
  missing 'Maintainer' field
-Selecting previously unselected package 6.
 (Reading database ... 138190 files and directories currently installed.)
 Preparing to unpack exec.deb ...
 ls: cannot access '6': No such file or directory
