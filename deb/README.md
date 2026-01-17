@@ -40,6 +40,14 @@ Reading `man 5 deb` I stumbled over this sentence:
 
 The header consists of two newline-delimited lines: the package version, and the file size of the control.tar file in ASCII decimal. Directly followed by the control.tar, and the *optional* data.tar. I'm not 100% sure if that is just a lucky coincidence of a null byte file actually being a kind-of valid tar and/or also being a valid gzip file, or if this was a deliberate design decision.
 
+The package version needs to start with "0.93", and needs to be at least 8 bytes long including newline, so I chose
+```
+0.93666
+
+```
+for all old deb files.
+
+
 ## Bonus: 57 byte pip package
 `H4sIAAAAAAACAyvQL04tKS3QK6hkoDswNMAubmQKlKELGAUFRZl5JRpmmiPT96MAAELqbJ0ABAAA`
 
@@ -102,6 +110,59 @@ When we check with `file` we see the following:
 c2.tgz: gzip compressed data, was "-L 6l.al", last modified: Thu Nov  7 15:28:10 2030, original size modulo 2^32 2048
 ```
 
+The deb file can now also be run as a shell script:
+```
+# bash bggp456.deb
+bggp456.deb: line 1: 0.93666: command not found
+bggp456.deb: line 2: 170: command not found
+bggp456.deb: line 3: $'\037\213\b\b': command not found
+Another #BGGP6 download!!!!!! Hi @binarygolf https://binary.golf/6
+bggp456.deb: line 5: $'3\021{\b': command not found
+bggp456.deb: line 5: $'\352\226\036\355m\034\326X\006\337\305o\205EJza\037\a\2059X\373\357\377\266\202I$\344\
+```
+
+## Odds & ends
+`smallest.deb` is 58 bytes, the smallest I could get a deb file to still somehow output '6':
+```
+# dpkg -i smallest.deb
+dpkg: error processing archive smallest.deb (--install):
+ parsing file '/var/lib/dpkg/tmp.ci/control' near line 0:
+ end of file after field name '6'
+Errors were encountered while processing:
+ smallest.deb
+```
+It's basically and old deb file with the `control` file just containing the number 6. dpkg will error out with a parsing error.
 
 
+`exec.deb` is the smallest deb that actually executes code when you try to install it:
+```
+b# dpkg -i smallest.deb
+dpkg: error processing archive smallest.deb (--install):
+ parsing file '/var/lib/dpkg/tmp.ci/control' near line 0:
+ end of file after field name '6'
+Errors were encountered while processing:
+ smallest.deb
+root@DESKTOP-NT8EGHQ:/home/balou/iv/bggp6/writeup/deb# dpkg -i exec.deb
+dpkg: warning: parsing file '/var/lib/dpkg/tmp.ci/control' near line 4 package '6':
+ missing 'Description' field
+dpkg: warning: parsing file '/var/lib/dpkg/tmp.ci/control' near line 4 package '6':
+ missing 'Maintainer' field
+Selecting previously unselected package 6.
+(Reading database ... 138190 files and directories currently installed.)
+Preparing to unpack exec.deb ...
+ls: cannot access '6': No such file or directory
+dpkg: error processing archive exec.deb (--install):
+ new 6 package pre-installation script subprocess returned error exit status 2
+Errors were encountered while processing:
+ exec.deb
+```
+The 'code' consists of just `ls 6` (which is smaller than `echo 6`).
+
+It is also a shell polylgot:
+```
+# bash exec.deb
+exec.deb: line 1: 0.93666: command not found
+exec.deb: line 2: 113: command not found
+exec.deb: line 3: $'\037\213\b': command not found
+```
 
