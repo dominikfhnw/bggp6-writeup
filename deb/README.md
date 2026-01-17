@@ -134,7 +134,7 @@ Errors were encountered while processing:
 It's basically and old deb file with the `control` file just containing the number 6. dpkg will error out with a parsing error.
 
 
-`exec.deb` is the smallest deb that actually executes code when you try to install it:
+`exec.deb`, at 125 bytes, is the smallest deb that actually executes code when you try to install it:
 ```
 b# dpkg -i smallest.deb
 dpkg: error processing archive smallest.deb (--install):
