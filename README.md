@@ -113,7 +113,7 @@ In the end I chose the endless loop, as this does not lead the executable to exi
 Golfed DEB package
 ------------------
 
-See [here](tree/main/deb) for the writeup for this entry
+See [here](deb/) for the writeup for this entry
 
 
 Other entries?
