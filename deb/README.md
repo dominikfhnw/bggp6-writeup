@@ -131,7 +131,7 @@ dpkg: error processing archive smallest.deb (--install):
 Errors were encountered while processing:
  smallest.deb
 ```
-It's basically and old deb file with the `control` file just containing the number 6. dpkg will error out with a parsing error.
+It's basically an old deb file with the `control` file just containing the number 6. dpkg will error out with a parsing error.
 
 
 `exec.deb`, at 125 bytes, is the smallest deb that actually executes code when you try to install it:
