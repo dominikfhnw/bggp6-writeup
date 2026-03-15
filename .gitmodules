@@ -1,0 +1,3 @@
+[submodule "allinone/asmlib"]
+	path = allinone/newlib
+	url = git@github.com:dominikfhnw/asmlib.git
