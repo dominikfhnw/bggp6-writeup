@@ -65,6 +65,7 @@ them. D'oh!
 It used to be that Bash had simple heuristics to differentiate shell scripts from binary files. The first line of the 'script' (i.e. up to the first newline) must not contain any null bytes. But this changed in Bash 5.2, when the explicit check for ELF files was added [2].
 
 [1] https://www.muppetlabs.com/~breadbox/software/tiny/
+
 [2] https://github.com/bminor/bash/blame/master/general.c#L724
 
 ELF print6
