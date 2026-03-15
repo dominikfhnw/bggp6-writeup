@@ -21,7 +21,7 @@ I kinda forgot about the writeup for my first entry, so it'll be quite terse.
 
 **_Please note: the rest of the ELF/sh polyglot writeup was written after the deadline_**
 
-Using the well-known template by brain Raiter leaves no room after the ELF magic numbers, complicating the inclusion of a shell script fragment.
+Using the well-known template by Brian Raiter leaves no room after the ELF magic numbers, complicating the inclusion of a shell script fragment.
 
 That's why I ended up using the following template:
 ```
