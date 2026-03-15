@@ -5,7 +5,7 @@ rm -f ./6 ./out ./err ./trace
 POSTBUILD='perl -0777pe '"'"'chop;$_=reverse'"'"' "$OUT" >> "$OUT"'
 OUT="e.com"
 NOEXIT=1
-. ./newbuild.sh
+. ./newlib/build.sh
 
 
 # run&tests

@@ -4,7 +4,7 @@ Palindromic Polyglot Replicator Crasher Downloader
 This is my "main" entry for BGGP#6. The goal was to implement as many BGGP challenges as possible. I also managed to fix code in a 3rd-party application that pertains to my entry.
 The main file format of this entry is an ELF executable for Linux on the x86 platform. The total file size is 223 bytes.
 
-The writeup consists of two parts: this file gives an overview, and the source file itself ([link](es.asm)) contains lots of comments with more technical details. The source relies on my unreleased assembler library, but the sources should be clear even without it. I can release the sources if anyone is interested, it just is in a perpetually unfinished and messy state.
+The writeup consists of two parts: this file gives an overview, and the source file itself ([link](es.asm)) contains lots of comments with more technical details. The source relies on my unreleased assembler library, but the sources should be clear even without it. I can release the sources if anyone is interested, it just is in a perpetually unfinished and messy state. EDIT: I released a first version, still in a quite messy state. Minimal changes to load the right buildscript have been made to `es.asm`.
 
 Executing it
 ------------
