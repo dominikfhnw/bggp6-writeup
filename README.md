@@ -17,15 +17,54 @@ For my first entry, I decided to submit an ELF and shell script polyglot.
 Making small 32-bit ELF executables for Linux/386 has been extensively discussed by Brian Raiter[1],
 so I won't rehash it here.
 
-But using a
+I kinda forgot about the writeup for my first entry, so it'll be quite terse.
+
+**_Please note: the rest of the ELF/sh polyglot writeup was written after the deadline_**
+Using the well-known template by brain Raiter leaves no room after the ELF magic numbers, complicating the inclusion of a shell script fragment.
+
+That's why I ended up using the following template:
 ```
 ELF                                             cpu/type                start       phdr_off                                  phdrsiz/cnt
 7f 45 4c 46 .. .. .. .. .. .. .. .. .. .. .. .. 02 00 03 00 .. .. .. .. 54 11 01 00 34 00 00 00 .. .. .. .. .. .. .. .. .. .. 20 00 03 00 .. ..
                                                                                                 01 00 00 00 ab 0c 00 00 ab dc ef gh .. .. .. .. ij kl mn op qr st uv wx .7 .. .. .. .. ..
                                                                                                 p_type      offset      vaddr       paddr       filesz      memsz       flg         align
 ```
+It was created in vim, and overlap for each position was tested by first moving the PHDR past the ELF header, and then successively deleting 3 characters at a time.
+
+I created ELF/shell polyglots with much bigger payloads before, and for those I used tricks like starting a HERE-document right after the first four ELF header bytes, to safely hide 
+null bytes and other non-executable stuff from the shell interpreter. But this was not necessary here, as the payload completely fits into the first few, unused, header bytes:
+
+```
+\x7fELF;exit 6
+```
+
+The ELF binary prints "6" and returns with exit code 2, fulfilling both the requirements from BGGP2 and BGGP6:
+
+```
+$ strace -rni ./bin
+     0.000000 [  59] [000073ab39eeef3b] execve("./bin", ["./bin"], 0x7ffc1cdf2448 /* 24 vars */) = 0
+     0.006834 [  59] [0020403e] [ Process PID=14392 runs in 32 bit mode. ]
+     0.000030 [   4] [0020403e] write(1, "6", 16) = 1
+     0.000142 [   1] [0020403e] exit(2) = ?
+     0.000087 [   1] [????????] +++ exited with 2 +++
+```
+
+The shellscript returns with exit code 6, and prints a message about not finding a binary called ELF or similar (exact message depends on shell being used and locale):
+
+```
+$ dash -x ./bin
++ ELF
+./bin: 1: ELF: not found
++ exit 6
+```
+
+So... success? Not quite: I originally submitted this as an ELF/*Bash* polyglot, but then found out that later versions of Bash specifically detect ELF files, and refuse to run
+them. D'oh!
+
+It used to be that Bash had simple heuristics to differentiate shell scripts from binary files. The first line of the 'script' (i.e. up to the first newline) must not contain any null bytes. But this changed in Bash 5.2, when the explicit check for ELF files was added [2].
 
 [1] https://www.muppetlabs.com/~breadbox/software/tiny/
+[2] https://github.com/bminor/bash/blame/master/general.c#L724
 
 ELF print6
 ----------
